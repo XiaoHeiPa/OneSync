@@ -47,7 +47,7 @@ public class SnapshotManager {
                 return;
             }
 
-            this.create(players, SnapshotCause.PERIODICAL);
+            new Thread(() -> this.create(players, SnapshotCause.PERIODICAL)).start();
         }, Ticks.TICKS_PER_SECOND * 5 * 60, Ticks.TICKS_PER_SECOND * 5 * 60);   // 每 5 分钟
 
     }

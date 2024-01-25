@@ -41,7 +41,7 @@ public class SnapshotListener implements Listener {
             return;
         }
 
-        snapshotManager.create(players, SnapshotCause.WORLD_SAVE);
+        new Thread(() -> snapshotManager.create(players, SnapshotCause.WORLD_SAVE)).start();
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -57,7 +57,7 @@ public class SnapshotListener implements Listener {
             return;
         }
 
-        snapshotManager.create(player, SnapshotCause.PLAYER_DEATH);
+        new Thread(() -> snapshotManager.create(player, SnapshotCause.PLAYER_DEATH)).start();
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -73,7 +73,7 @@ public class SnapshotListener implements Listener {
             return;
         }
 
-        snapshotManager.create(player, SnapshotCause.PLAYER_GAME_MODE_CHANGE);
+        new Thread(() -> snapshotManager.create(player, SnapshotCause.PLAYER_GAME_MODE_CHANGE)).start();
     }
 
 }
